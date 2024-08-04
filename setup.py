@@ -34,6 +34,10 @@ class CustomInstall(install):
         # Run the standard PyPi Copy
         install.run(self)
 
+def read_requirements():
+    with open('requirements.txt') as reqs:
+        return reqs.read().splitlines()
+
 
 setup(
     # Metadata
@@ -56,7 +60,7 @@ setup(
     # Requirements
     python_requires=">=3.7",
     packages=["bqt"],
-    install_requires=["PySide6", "blender-qt-stylesheet"],
+    install_requires=read_requirements(),
     # Package Data
     include_package_data=True,
     package_data={"bqt": ["*.png", "*.qss"]},
